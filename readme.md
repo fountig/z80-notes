@@ -40,3 +40,52 @@ or skip BC and just use two registers storing the value to HL.
 LD Hl,1
 LD DE,2
 ```
+# Do a 'for loop' from 0 to 10. We increment a memory address with a value of 0, ten times.
+```
+org &9c40
+
+ld a,10
+ld b,0
+ld hl,&9ca0
+
+loop:
+
+	cp b
+	jp z,loop_exit
+
+	inc (hl)
+	inc b
+	jp loop	
+loop_exit:
+  ret
+```
+# do a for loop, printing 0123456789 to the screen.
+```
+org &9c40
+
+ld a,47        ; 47 is one character before '0'. 
+ld hl,&9ca0    ; we load HL with the address to put '47' 
+ld (hl),a      ; we load the address pointed at HL with 47
+
+
+ld a,10        ; loop 10 times
+ld b,0
+
+
+loop:
+
+	cp b
+	jp z,loop_exit
+
+	inc (hl)
+	ld a,(hl)
+	call &bb5a
+
+	ld a,10
+	inc b
+	jp loop	
+loop_exit:
+	ret
+```
+
+
