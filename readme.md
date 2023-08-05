@@ -88,26 +88,34 @@ loop_exit:
 	ret
 ```
 
-# Print '=' if two 8-bit integers are equal and '<>' if they are not.
-
-
+# Print '=' if two integers are equal, '<' if A is less than compared, '>' if greater
 ```
 org #9c40
 
 PrintChar equ #bb5a
-ld a,7
-sub 7
-jp M, flag
 
-ld a,'='
-call PrintChar
+ld a,10
+sub 100
 
+jp Z, equal
+jp NC, greaterthan
+jp C, lessthan
 ret
 
-flag: 
+
+lessthan: 
 	ld a,'<'
 	call PrintChar
+	ret
+
+greaterthan:
 	ld a,'>'
 	call PrintChar
 	ret
-```
+
+equal:
+	ld a,'='
+	call PrintChar
+	ret
+ ```
+
