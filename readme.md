@@ -88,4 +88,26 @@ loop_exit:
 	ret
 ```
 
+# Print '=' if two 8-bit integers are equal and '<>' if they are not.
 
+
+```
+org #9c40
+
+PrintChar equ #bb5a
+ld a,7
+sub 7
+jp M, flag
+
+ld a,'='
+call PrintChar
+
+ret
+
+flag: 
+	ld a,'<'
+	call PrintChar
+	ld a,'>'
+	call PrintChar
+	ret
+```
