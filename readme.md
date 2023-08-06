@@ -2,10 +2,6 @@ Amstrad Z80 machine code notes
 ==============================
 
 
-1. You can't load a value from a register to a memory address directly using LD.
-You can do the opposite, load a register from a memory address.
-
-2. You cant do LD (HL),BC. So how to store a 16-bit register to a memory address?
 ```
 ORG &9c40
 
