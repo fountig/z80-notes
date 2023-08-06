@@ -119,3 +119,20 @@ equal:
 	ret
  ```
 
+# Store 8-bit and 16-bit values to memory addresses.
+```
+org #9c40
+
+; store an 8-bit value to a memory address
+ld a,254
+ld (#9c60), a
+
+; store a 16-bit value to a memory address.
+; This will get stored backwards, 'aa' in 9c70 and 'ff' in 9c71.
+
+ld hl, #ffaa
+ld (#9c70), hl
+
+ret
+```
+
