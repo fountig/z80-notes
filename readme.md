@@ -133,6 +133,11 @@ ld (#9c60), a
 ld hl, #ffaa
 ld (#9c70), hl
 
+; store a 16-bit value from memory to a 16-bit register. This will also store the values
+; in 9c70 and 9c71.
+
+ld bc, (#9c70)
+
 ret
 ```
 
