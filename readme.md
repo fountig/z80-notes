@@ -170,9 +170,194 @@ brack2:
 ret 
 ```
 
+# sample loop1
+
+```
+ORG &0080
+LD A,0 ; Accumulator is data pointer
+
+; ++++++++++++++++++++++++++++++++++++++++++++++++++
+; [.-]
+
+PRINTCHAR EQU &BB5A
+
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+
+CP 0
+JP NZ,loop1
+RET
 
 
+loop1:
+	CALL PRINTCHAR
+	
+	DEC A
 
-ret
+	CP 0
+	JP NZ,loop1
+	ret
 ```
 
+# sample inner loop
+
+```
+ORG &0080
+LD A,0 ; Accumulator is data pointer
+
+; ++++++++++++++++++++++++++++++++++++++++++++++++++
+; [.[-]]
+
+PRINTCHAR EQU &BB5A
+
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+INC A
+
+CP 0
+JP NZ,loop1
+RET
+
+
+loop1:
+	CALL PRINTCHAR
+	CP 0
+	JP NZ, loop2
+	ret
+
+loop2:
+
+	DEC A
+	CP 0
+	JP NZ,loop2
+	ret
+```
