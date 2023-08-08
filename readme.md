@@ -133,6 +133,44 @@ ld (#9c70), hl
 ; in 9c70 and 9c71.
 
 ld bc, (#9c70)
+```
+# BF
+
+```
+org &0080
+
+ld hl, &0080 ; initialise data pointer
+inc hl		; > Increment the data pointer by one (to point to the next cell to the right).
+dec hl		; < Decrement the data pointer by one (to point to the next cell to the left).
+inc (hl)	; + Increment the byte at the data pointer by one.
+dec (hl)	; - Decrement the byte at the data pointer by one.
+
+ld a,(hl)
+call &bb5a	; . output the byte at the data pointer
+
+call &bb09
+ld hl, a	; , Accept one byte of input, storing its value in the byte at the data pointer.
+ 
+; test
+
+jp brack1
+jp brack2
+
+brack1:
+
+ret
+
+brack2:
+
+	; commands
+
+; test if data pointer is zero (if HL=&0080)
+
+ret 
+```
+
+
+
 
 ret
 ```
