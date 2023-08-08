@@ -137,6 +137,12 @@ ld bc, (#9c70)
 
 # BF
 
+*Note*
+The Data Pointer will probably be HL, since we need to be able to point it to a next cell, which is a 16-bit memory address.
+We can also increment the byte at the data pointer, so since we can only do 255 (ASCII) the MSB will be &00.
+Testing for it to be zero, will be tricky, since we need to artificially enforce memory boundaries, i.e. zero will not mean that HL is in address &0000, but in the ORG one. 
+Incrementing the data pointer means ORG+1. We also need to make sure that the data pointer will not fall off the boundary (the ORG memory address). 
+
 ```
 org &0080
 
