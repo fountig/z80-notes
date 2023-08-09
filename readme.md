@@ -367,3 +367,39 @@ loop2:
 	JP NZ,loop2
 	ret
 ```
+# Draw a rectangle using the Amstrad Firmware
+
+```
+org &9c40
+; call &bb4e
+; mode 1, cursor at top left, no clear
+
+call &bb6c ; CLS
+
+; move absolute
+ld hl, 200
+ld de, 200
+call &bbc0
+
+ld hl, 200 ; x 
+ld de, 400 ; y
+call &bbf6
+
+ld hl, 200 ; x 
+ld de, 400 ; y
+call &bbf6
+
+ld hl, 100
+ld de, 400
+call &bbf6
+
+ld hl, 100
+ld de, 200
+call &bbf6
+
+ld hl, 200
+ld de, 200
+call &bbf6
+
+ret
+```
