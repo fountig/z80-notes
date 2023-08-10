@@ -2,7 +2,7 @@
 ; beginning at &9C90. Terminates if user presses ENTER.
 ; Heavily commented, cause I'm a noob :-).
 ;
-; e.g. if  user presses 'Hello', then :
+; e.g. if  user types 'Hello' and presses [ENTER], then the memory block becomes:
 ; 
 ; &9C90 48 H
 ; &9C91 65 e
