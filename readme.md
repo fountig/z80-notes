@@ -403,3 +403,41 @@ call &bbf6
 
 ret
 ```
+# get/set cursor location example
+```
+ORG &9C40
+
+;  Firmware calls we need. 
+
+txt_output   EQU &BB5A 
+km_wait_char EQU &BB06
+txt_cur_on   EQU &BB81
+txt_cur_enable EQU &BB7B
+txt_get_cursor EQU &BB78
+txt_set_cursor EQU &BB75
+txt_set_column EQU &BB6F
+
+CALL txt_cur_enable
+CALL txt_cur_on
+CALL txt_get_cursor
+
+LD A,'X'
+CALL txt_output
+LD A,'X'
+CALL txt_output
+LD A,'X'
+CALL txt_output
+
+CALL txt_get_cursor
+DEC H
+CALL txt_set_cursor
+LD A,&10
+CALL txt_output
+
+NOP
+NOP
+
+loop: jp loop
+```
+
+
