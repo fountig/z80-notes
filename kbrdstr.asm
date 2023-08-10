@@ -1,14 +1,16 @@
-; Read a string from the keyboard and store it character by character beginning at &9C90.
-; Terminate if user presses ENTER.
+; Read a string from the keyboard and store it character by character in a memory block,
+; beginning at &9C90. Terminates if user presses ENTER.
 ; Heavily commented, cause I'm a noob :-).
 ;
 ; e.g. if  user presses 'Hello', then :
 ; 
-; &9C90 H
-; &9C91 e
-; &9C92 l
-; &9C93 l
-; &9C94 o
+; &9C90 48 H
+; &9C91 65 e
+; &9C92 6C l
+; &9C93 6C l
+; &9C94 6F o
+; &9C95 0D ↵
+
 
 ORG &9C40
 
