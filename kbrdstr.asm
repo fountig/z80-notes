@@ -31,7 +31,7 @@ read_string:
 	LD (HL), A 	   ; store character to the memory address pointed by HL
 	INC HL 		   ; increment HL, so we can store the next character at the next memory address.
 	CALL txt_output    ; print the character value that is stored in A
-	CP &0D             ; test if x0D, the ASCII value of RETURN, is pressed.
+	CP &0D             ; test if x0D, the ASCII value of [ENTER], is pressed.
 
 	JP nz, read_string ; if no, loop again
 	RET		   ; if yes, exit. 
