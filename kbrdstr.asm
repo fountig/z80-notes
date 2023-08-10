@@ -1,5 +1,5 @@
 ; Read a string from the keyboard and store it character by character in a memory block,
-; beginning at &9C90. Terminates if user presses ENTER.
+; beginning at &9C90. Terminates if user presses [ENTER].
 ; Heavily commented, cause I'm a noob :-).
 ;
 ; e.g. if  user types 'Hello' and presses [ENTER], then the memory block becomes:
