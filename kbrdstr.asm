@@ -13,7 +13,6 @@
 ;
 ; Note: Deleting a character isn't implemented (yet).
 
-
 ORG &9C40
 
 txt_output   EQU &BB5A 
