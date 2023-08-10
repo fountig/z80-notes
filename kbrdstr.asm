@@ -26,13 +26,13 @@ LD HL, &9C90 ; Where our string will be stored.
 
 CALL read_string
 
-; do something here to move the cursor one line down after [ENTER] 
+; Move the cursor one line down after [ENTER] 
 ; has been pressed, otherwise the string you typed will be 
 ; overwritten by the 'Ready' prompt.
 
-CALL txt_get_cursor
-INC L
-CALL txt_set_cursor
+CALL txt_get_cursor ; get cursor's current position. H contains row number, L contains line number
+INC L		    ; increment L by one.
+CALL txt_set_cursor ; set the cursor. 
 
 RET
 
