@@ -10,7 +10,8 @@
 ; &9C93 6C l
 ; &9C94 6F o
 ; &9C95 0D ↵
-
+;
+; Note: The 'del' key doesn't work. 
 
 ORG &9C40
 
