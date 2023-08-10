@@ -1,8 +1,8 @@
 ; Read a string from the keyboard and store it character by character in a memory block,
-; beginning at &9C90. Terminates if user presses ENTER.
+; beginning at &9C90. Terminates if user presses [RETURN].
 ; Heavily commented, cause I'm a noob.
 ;
-; e.g. if  user types 'Hello' and presses [ENTER], then the memory block becomes:
+; e.g. if  user types 'Hello' and presses [RETURN], then the memory block becomes:
 ; 
 ; &9C90 48 H
 ; &9C91 65 e
@@ -26,7 +26,7 @@ LD HL, &9C90 ; Where our string will be stored.
 
 CALL read_string
 
-; Move the cursor one line down after [ENTER] 
+; Move the cursor one line down after [RETURN] 
 ; has been pressed, otherwise the string you typed will be 
 ; overwritten by the 'Ready' prompt.
 
@@ -42,7 +42,7 @@ read_string:
 	LD (HL), A 	   ; store character to the memory address pointed by HL
 	INC HL 		   ; increment HL, so we can store the next character at the next memory address.
 	CALL txt_output    ; print the character value that is stored in A
-	CP &0D             ; test if x0D, the ASCII value of RETURN, is pressed.
+	CP &0D             ; test if x0D, the ASCII value of [RETURN], is pressed.
 	
 	JP nz, read_string ; if no, loop again
 	RET		   ; if yes, exit. 
