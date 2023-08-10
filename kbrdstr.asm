@@ -11,7 +11,8 @@
 ; &9C94 6F o
 ; &9C95 0D ↵
 ;
-; Note: The 'del' key doesn't work. 
+; Note: Deleting a character isn't implemented (yet).
+
 
 ORG &9C40
 
