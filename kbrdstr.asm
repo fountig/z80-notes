@@ -2,7 +2,9 @@ ORG &9C40
 
 txt_output   EQU &BB5A 
 km_wait_char EQU &BB06
+txt_cur_on   EQU &BB81
 
+CALL txt_cur_on ; enable the text cursor. 
 LD HL, &9C90 ; Where our string will be stored.
 JP read_string
 
@@ -18,7 +20,3 @@ read_string:
 
 	JP nz, read_string ; if no, loop again
 	RET		   ; if yes, exit. 
-
-
-
-
