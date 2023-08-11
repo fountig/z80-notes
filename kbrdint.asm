@@ -57,7 +57,9 @@ read_int:
 	CP &10
 	CALL NZ,store_int      ; store character to the memory address pointed by BC
 				; only if the character is not a 'delete' character!
-	ADD &30
+
+	ADD &30			; After store, we need to add the offset (30) back, so to print its ASCII value.
+
 	CALL txt_output         ; print the character value that is stored in A
 	CP &0D                  ; test if x0D, the ASCII value of RETURN, is pressed.
 	JP nz, read_int      ; if no, loop again
@@ -76,7 +78,8 @@ delete_int:
 	RET
 
 store_int:
-	SUB &30
+	SUB &30			; Subtract 30 from the ASCII value. So if we type 0, we get 30-30=0 and so on.
+
 	LD (BC), A 	   	; store character to the memory address pointed by HL
 	INC BC 		   	; increment HL, so we can store the next character at the next memory	
 	RET
