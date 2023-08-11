@@ -440,4 +440,18 @@ NOP
 loop: jp loop
 ```
 
+# Text buffer using the Amstrad firmware ...
+
+```
+ORG &9C40
+
+;  Firmware calls we need. 
+
+LD HL,&9D00
+CALL &BD5E
+NOP
+
+RET
+```
+
 
