@@ -2,7 +2,7 @@
 ; this is atrocious, but it seems to work, except that length gets
 ; reported as '3' and not '4'. But I guess you could argue that we count from 0.
 ; 
-; Although it uses BC, it can only store up to 99 values (00xx).
+; Although it uses BC, it can only store up to 255 values (00xx).
 
 org &9c40
 
