@@ -1,5 +1,4 @@
 ; We setup a text buffer at &9c40 using the &BD5E call.
-; Let's say the buffer contains '2 2 +'
 ; 
 ORG &4000
 
