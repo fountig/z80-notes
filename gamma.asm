@@ -46,6 +46,8 @@ get_next_token:
 	jp z, exec_op_swap
 	cp &44 ; D
 	jp z, exec_op_dup
+	cp &2e ; .
+	jp z, exec_op_dot ; prints last value and removes it from stack
 	
 	cp &20 ; ' '
 	jp z, exec_op_space
@@ -168,11 +170,21 @@ exec_op_swap:
 	ld (bc),a
 	inc bc
 	inc bc
-
-
-
+	push bc
 	jp get_next_token
 
+exec_op_dot:
+	pop bc
+	dec bc
+	ld a, (bc)	
+	add &30	; this works only for integer literals pushed in the stack. 
+	call txt_output
+	ld a,0 ; remove element
+	ld (bc),a
+	push bc
+	jp get_next_token
+
+	
 exec_op_dup:
 	pop bc ; pop the stack pointer
 	dec bc
