@@ -1,4 +1,4 @@
-ORG &4000
+org &4000
 
 stack_bottom_address equ &5555
 txt_output   EQU &BB5A 
@@ -6,18 +6,14 @@ txt_output   EQU &BB5A
 ld bc, stack_bottom_address
 push bc
 
-LD HL, &4800
-CALL &BD5E
-
+ld hl, &4800
+call &BD5E
 
 get_next_token:
 	
 	ld a, (hl)
 	inc hl 
-	; don't increment de, we don't need another buffer, just a place
-	; where the current character is stored. 
-	; inc de
-	
+
 	cp &30
 	jp z, exec_lit_0
 	cp &31
@@ -184,7 +180,6 @@ exec_op_dot:
 	push bc
 	jp get_next_token
 
-	
 exec_op_dup:
 	pop bc ; pop the stack pointer
 	dec bc
@@ -203,7 +198,6 @@ parse_error:
 exit_gamma:
 	pop bc
 	ret
-	
 
 ret
 
