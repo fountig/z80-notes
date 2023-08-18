@@ -1,19 +1,33 @@
 org &4000
 
 stack_bottom_address equ &5555
-txt_output   EQU &BB5A 
+txt_output   	     equ &BB5A 
+banner 	             db  &b2, &ba,"orth 0", 255
+cls 		     equ &bc14
 
 ld bc, stack_bottom_address
 push bc
 
+; print banner
+call cls
+ld hl, banner
+call print_banner
+call print_newline
+call print_newline
+
+
 ld hl, &4800
 call &BD5E
+
 
 get_next_token:
 	
 	ld a, (hl)
 	inc hl 
-
+	; don't increment de, we don't need another buffer, just a place
+	; where the current character is stored. 
+	; inc de
+	
 	cp &30
 	jp z, exec_lit_0
 	cp &31
@@ -174,12 +188,18 @@ exec_op_dot:
 	dec bc
 	ld a, (bc)	
 	add &30	; this works only for integer literals pushed in the stack. 
+	push af
+	call print_newline
+	pop af
 	call txt_output
+	call print_newline
+	
 	ld a,0 ; remove element
 	ld (bc),a
 	push bc
 	jp get_next_token
 
+	
 exec_op_dup:
 	pop bc ; pop the stack pointer
 	dec bc
@@ -199,6 +219,34 @@ exit_gamma:
 	pop bc
 	ret
 
+print_banner:
+
+	ld a, (hl)
+	cp 255
+	ret z
+
+	inc hl
+	call txt_output
+	jr print_banner
+
+print_newline:
+	ld a, 13
+	call txt_output
+	ld a, 10
+	call txt_output
+	ret
+print_ok:
+	ld a, &80
+	call txt_output
+	ld a, &80
+	call txt_output
+	ld a, &80
+	call txt_output
+	ld a,&4F
+	call txt_output
+	ld a,&6b
+	call txt_output
+	ret
 ret
 
 
