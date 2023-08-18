@@ -57,8 +57,7 @@ get_next_token:
 	jp get_next_token
 	
 exec_op_space:
-	ld a,&e4
-	call txt_output
+	
 	jp get_next_token
 
 exec_lit_0:
@@ -152,8 +151,26 @@ exec_op_add:
 	jp get_next_token
 
 exec_op_swap:
-	ld a,&e4
-	call txt_output
+	pop bc
+	dec bc
+	ld a,(bc)
+	push bc
+	push af
+	dec bc
+	; dup start
+	ld a,(bc)
+	inc bc
+	ld (bc), a
+	; dup end
+
+	dec bc ; go back 
+	pop af ; store the previous value
+	ld (bc),a
+	inc bc
+	inc bc
+
+
+
 	jp get_next_token
 
 exec_op_dup:
