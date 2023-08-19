@@ -1,4 +1,8 @@
 ; hash function
+; everything works until the modulo function, where I cant seem to get the previous value
+; before the one that generates the Carry (and therefore the exit). PUSHing the results of
+; the subtractions to the stack doesn't work, because you get a bunch of them, and you need to
+; discard all of them, except the previous-to-last.
 
 org &4000
 
@@ -29,21 +33,23 @@ ascii_sum:
 
 
 ; compute the hash by doing ascii_sum MOD 255 (255 will be the length of the hashtable)
-ld hl, &1fe
+
 ld bc, &ff
 ;sbc hl, bc 
 
 compute_modulo:
-	sbc hl, bc
-	push hl
-	jp nc, compute_modulo
-	jp c, store_hash
+	sbc hl, bc 
+	jp nc, compute_modulo 
+	jp c, store_hash ; when this jumps, the value in HL will have generated a carry flag, the
+                         ; remainder was at the previous calculation. 
 	
 
 ; this should be 3C from the example.
 
 store_hash:
-	pop hl ; we want the one before the carry bit was flipped.
+
+	adc hl, bc ; so we add ff again
+	dec hl     ; and add 1 (why the off-by-one here?)
 	ld (HASH_ADDR), hl
 
 ret
