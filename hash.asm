@@ -2,14 +2,9 @@
 
 org &4000
 
-;ld hl, &017f
-;ld bc, &ff
-
-;ld hl, &3e8
-;ld bc, &19
-
 key1 defb 'SWAP',0
 HASH_ADDR equ &8888
+
 ld a,0
 ld de, key1
 ld hl, &0000
@@ -25,7 +20,7 @@ ascii_sum:
 	  cp 0 
 	  jp nz,ascii_sum
 
-; HL should be 013B
+; HL should be 013B (SWAP)
 ; compute the hash by doing ascii_sum MOD 255 (255 will be the length of the hashtable)
 
 ld bc, &ff
@@ -35,7 +30,7 @@ compute_modulo:
 	sbc hl, bc 
 	jp nc, compute_modulo 
 	jp c, store_hash ; when this jumps, the value in HL will have generated a carry flag, the
-                         ; remainder was at the previous calculation. 
+                         ; remainder would be at the previous calculation. 
 	
 
 ; HL should be 3C from the example.
