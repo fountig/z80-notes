@@ -1,6 +1,5 @@
 ; hash function
 
-
 org &4000
 
 ;ld hl, &017f
@@ -15,7 +14,7 @@ ld a,0
 ld de, key1
 ld hl, &0000
 
-; compute the ascii sum of consecutive memory addresses i.e. defb
+; compute the ascii sum of consecutive memory addresses pointed at the defb instruction. 
 ascii_sum:
 	  ld a, (de) ; store char for loop control (if a=255 exit)
 	  ld (&5555), a  ; move char to temp addr
@@ -27,8 +26,6 @@ ascii_sum:
 	  jp nz,ascii_sum
 
 ; HL should be 013B
-
-
 ; compute the hash by doing ascii_sum MOD 255 (255 will be the length of the hashtable)
 
 ld bc, &ff
@@ -41,11 +38,10 @@ compute_modulo:
                          ; remainder was at the previous calculation. 
 	
 
-; this should be 3C from the example.
-
+; HL should be 3C from the example.
 store_hash:
 
-	adc hl, bc ; so we add ff again
+	adc hl, bc ; so we add &ff again to go back. 
 	dec hl     ; and add 1 (why the off-by-one here?)
 	ld (HASH_ADDR), hl
 
