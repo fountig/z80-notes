@@ -1,8 +1,5 @@
 ; hash function
-; everything works until the modulo function, where I cant seem to get the previous value
-; before the one that generates the Carry (and therefore the exit). PUSHing the results of
-; the subtractions to the stack doesn't work, because you get a bunch of them, and you need to
-; discard all of them, except the previous-to-last.
+
 
 org &4000
 
