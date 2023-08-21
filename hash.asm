@@ -11,7 +11,7 @@ ld hl, &0000
 
 ; compute the ascii sum of consecutive memory addresses pointed at the defb instruction. 
 ascii_sum:
-	  ld a, (de) ; store char for loop control (if a=255 exit)
+	  ld a, (de) ; store char for loop control (if A=0 exit)
 	  ld (&5555), a  ; move char to temp addr
 	  ld bc, (&5555) ; move temp addr char to bc so we can add. 
 
