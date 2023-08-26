@@ -3,8 +3,7 @@
 ;; Exit: A is corrupted. Flags are affected. Carry flag is 1 if its not a number, 0 if it is.
 
 isnumber:
-
-;; Reset Carry flag 
+	;; Reset Carry flag 
 	scf
 	ccf
 
@@ -14,7 +13,7 @@ isnumber:
 	ld b,a ;; save A for _lower_bound_check.
 	add &c6
 	call nc, _lower_bound_check
-	ret c
+	ret
 
 	;; so if it doesn't wrap, we need to check the possibility of the ASCII code being 00 to 20. 
 	;; We subtract 30 (our lowest possible accepted value). If it wraps, the carry is set to 1.
@@ -22,5 +21,3 @@ isnumber:
 		ld a, b
 		sub &30
 		ret
-
-;; PS: Compare this with isnumber.asm, to see the difference. 
