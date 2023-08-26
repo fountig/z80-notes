@@ -12,7 +12,6 @@ isnumber:
 	;; But this doesn't work for lower bounds, for example, if A = 20, then it won't wrap
 
 	ld b,a ;; save A for _lower_bound_check.
-	ld a, &96
 	add &c6
 	call nc, _lower_bound_check
 	ret c
