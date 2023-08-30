@@ -481,4 +481,19 @@ ret
 RET
 ```
 
+# Split the MSB/LSB of an 8-bit number into two memory locations. For example '3D' becomes '30 0D'
+
+```
+org &4000
+ld a, &3d
+ld b, a
+and %11110000
+ld (&5001), a
+ld a,b
+and %00001111
+ld (&5002), a
+ret
+``` 
+
+
 
