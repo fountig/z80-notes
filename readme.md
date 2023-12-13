@@ -450,14 +450,13 @@ ORG &9C40
 LD HL,&9D00
 CALL &BD5E
 NOP
-
+```
 # VRAM test
 ```
 ; flood vram with ff, let's see how that'll work.
 
 scr_dot_position equ &BC1D 
 org &1000
-
 
 call scr_dot_position
 
@@ -475,10 +474,6 @@ ld (hl), 255
 inc hl
 ld (hl), 255
 ret
-```
-
-
-RET
 ```
 
 # Split the MSB/LSB of an 8-bit number into two memory locations. For example '3D' becomes '30 0D'
