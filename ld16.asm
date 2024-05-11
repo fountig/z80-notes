@@ -11,7 +11,7 @@ pop hl
 
 ld hl, &1234
 ld bc, &5678
-; Same but this takes only 14 cycles.
+; Same but this takes only 8 cycles!
 
 ld h, b  
 ld l, c
