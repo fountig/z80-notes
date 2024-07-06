@@ -1,0 +1,12 @@
+<digit> ::= [0-9]
+<hex> ::= "&" <digit> | "&" <digit> <digit> | "&" <digit> [A-F]  | "&" [A-F] [A-F] | "&" [A-F] | "&" [A-F] <digit>
+<r> ::= "A" | "B" | "C" | "D" | "E" | "H" | "L" | "IXH" | "IXL" | "IYH" | "IYL" 
+<accumulator> ::= "A"
+<rr> ::= "BC" | "DE" | "HL" | "SP"
+<ix_offset> ::= "IX" "+" <hex> | "IY" "+" <hex>
+<iy_offset> ::= "IY" "+" <hex> | "IY" "+" <hex>
+<r_indirect> ::= "(" <rr> ")"
+<hl_indirect> ::= "(" "HL" ")"
+<op> ::= "ADC" 
+<asm> ::= <op> <accumulator> "," <r> | <op> <accumulator> "," <hex> | <op> <accumulator> "," <hl_indirect> | <op> <accumulator> "," <ix_offset> | 
+          <op> <accumulator> "," <iy_offset> | <op> "HL" "," <rr>
